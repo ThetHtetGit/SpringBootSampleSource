@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<title th:text="${title}">Survey Form</title>
+
+	<!-- Bootstrap core CSS -->
+	<link href="#" th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="starter-template.css" th:href="@{/css/starter-template.css}" rel="stylesheet">
+</head>
+
+<body>
+	<div th:replace="~{block/header_boot::headerA_boot}"></div>
+	<main role="main" class="container">
+		<h1 th:text="${title}">title</h1>
+		<div th:if="${complete}" class="alert alert-success" role="alert">
+			<h3 th:text="${complete}"></h3>
+		</div>
+
+		<form method="POST" action="#" th:action="@{/survey/confirm}" th:object="${surveyForm}">
+			<div class="form-group">
+				<label for="age">年齢:</label>
+				<input type="number" class="form-control" id="age" name="age" placeholder="Enter age" th:value="*{age}">
+			</div>
+			<div th:if="${#fields.hasErrors('age')}" th:errors="*{age}" class="text-danger mb-4"></div>
+			  
+			<div class="form-group">
+				<label for="satisfaction">満足度:</label>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="satisfaction" id="satisfaction1" value="1" th:checked="*{satisfaction == 1}">
+				  <label class="form-check-label" for="satisfaction1">1</label>
+				</div>	
+			  	<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="satisfaction" id="satisfaction2" value="2" th:checked="*{satisfaction == 2}">
+				  <label class="form-check-label" for="satisfaction2">2</label>
+				</div>	
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="satisfaction" id="satisfaction3" value="3" th:checked="*{satisfaction == 3}">
+				  <label class="form-check-label" for="satisfaction3">3</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="satisfaction" id="satisfaction4" value="4" th:checked="*{satisfaction == 4}">
+				  <label class="form-check-label" for="satisfaction4">4</label>
+				</div>
+				<div class="form-check form-check-inline">
+				  <input class="form-check-input" type="radio" name="satisfaction" id="satisfaction5" value="5" th:checked="*{satisfaction == 5}">
+				  <label class="form-check-label" for="satisfaction5">5</label>
+				</div>
+			</div>		  
+			<div th:if="${#fields.hasErrors('satisfaction')}" th:errors="*{satisfaction}" class="text-danger mb-4"></div>
+			  
+		  	<div class="form-group">
+			    <label for="comment">コメント:</label>		    
+			    <textarea name="comment" class="form-control" id="comment" rows="3" cols="40"  th:field="*{comment}"></textarea>       
+		  	</div>
+		  	<div th:if="${#fields.hasErrors('comment')}" th:errors="*{comment}" class="text-danger mb-4"></div>
+			
+			<button type="submit" class="btn btn-outline-primary">確認ページへ</button>			
+		</form>		
+	</main>
+		
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.2/assets/js/vendor/jquery-slim.min.js"><\/script>')</script><script src="/docs/4.2/dist/js/bootstrap.bundle.min.js"  th:src="@{/js/bootstrap.bundle.min.js}" integrity="sha384-zDnhMsjVZfS3hiP7oCBRmfjkQC4fzxVxFhBx8Hkz2aZX8gEvA/jsP3eXRCvzTofP" crossorigin="anonymous"></script>    
+</body>
+</html>
